@@ -10,12 +10,25 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // home: Image.asset("../assets/finn.png"),
-      home: Center(
-        child: Container(
-          width: 50,
-          height: 50,
-          color: Colors.blue,
+      debugShowCheckedModeBanner: false,
+      // Scaffold를 통해 상중하로 레이아웃을 나눌 수 있다
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("메인"),
+        ),
+        body: Text("메인입니다"),
+        bottomNavigationBar: BottomAppBar(
+          child: Container(
+            padding: EdgeInsets.only(top: 20, bottom: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Icon(Icons.phone),
+                Icon(Icons.message),
+                Icon(Icons.contact_page),
+              ],
+            ),
+          ),
         ),
       ),
     );
