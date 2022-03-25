@@ -62,11 +62,7 @@ class Home extends GetView<HomeController> {
                   // SliverChildBuilderDelegate는 ListView.builder 처럼 리스트의 아이템을 생성해줌
                   delegate: SliverChildListDelegate(
                     [
-                      Row(
-                        children: [
-                          Text(controller.title.value),
-                        ],
-                      ),
+                      Text(controller.title.value),
                       Text("?"),
                       Text("?"),
                       Text("?"),
