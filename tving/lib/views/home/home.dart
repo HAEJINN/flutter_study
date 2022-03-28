@@ -82,59 +82,83 @@ class Home extends GetView<HomeController> {
                               height: Get.height * 0.4,
                               child: Stack(
                                 children: [
-                                  Image.asset(
-                                    "assets/sky.jpg",
-                                    width: Get.width,
-                                    fit: BoxFit.cover,
-                                  ),
-                                  Align(
-                                    alignment: Alignment.bottomCenter,
-                                    child: Container(
-                                      height: Get.height * 0.2,
-                                      padding: EdgeInsets.all(15),
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  PageView.builder(
+                                    controller: controller.pageController,
+                                    onPageChanged: (value) {
+                                      controller.setColor(value);
+                                    },
+                                    itemCount: controller.colorList.length,
+                                    itemBuilder: (context, index) {
+                                      return Stack(
                                         children: [
-                                          Text(
-                                            "대충 영화설명 어쩌구저쩌구",
-                                            style: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.w500,
-                                              color: Colors.white,
+                                          SizedBox(
+                                            height: Get.height * 0.4,
+                                            child: Image.asset(
+                                              controller.photoList[index],
+                                              width: Get.width,
+                                              fit: BoxFit.fill,
                                             ),
                                           ),
-                                          OutlinedButton(
-                                            onPressed: () {},
-                                            child: Text(
-                                              "자세히보기",
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                              ),
-                                            ),
-                                            style: OutlinedButton.styleFrom(
-                                              side: BorderSide(
-                                                color: Colors.white,
-                                              ),
-                                            ),
-                                          ),
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              for (var i = 0; i < controller.colorList.length; i++)
-                                                Container(
-                                                  margin: EdgeInsets.only(left: 2, right: 2),
-                                                  child: Icon(
-                                                    Icons.circle,
-                                                    size: 12,
-                                                    color: controller.colorList[i] ? Colors.white : Colors.grey,
+                                          Align(
+                                            alignment: Alignment.bottomCenter,
+                                            child: Container(
+                                              height: Get.height * 0.2,
+                                              padding: EdgeInsets.all(15),
+                                              child: Column(
+                                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                children: [
+                                                  Text(
+                                                    "대충 영화설명 어쩌구저쩌구",
+                                                    style: TextStyle(
+                                                      fontSize: 20,
+                                                      fontWeight: FontWeight.w500,
+                                                      color: Colors.white,
+                                                    ),
                                                   ),
-                                                )
-                                            ],
-                                          )
+                                                  OutlinedButton(
+                                                    onPressed: () {},
+                                                    child: Text(
+                                                      "자세히보기",
+                                                      style: TextStyle(
+                                                        color: Colors.white,
+                                                      ),
+                                                    ),
+                                                    style: OutlinedButton.styleFrom(
+                                                      side: BorderSide(
+                                                        color: Colors.white,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          for (var i = 0; i < controller.colorList.length; i++)
+                                            Container(
+                                              margin: EdgeInsets.only(left: 2, right: 2),
+                                              child: Icon(
+                                                Icons.circle,
+                                                size: 12,
+                                                color: controller.colorList[i] ? Colors.white : Colors.grey,
+                                              ),
+                                            ),
                                         ],
                                       ),
-                                    ),
-                                  )
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                    ],
+                                  ),
                                 ],
                               ),
                             ),

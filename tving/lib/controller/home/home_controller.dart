@@ -7,10 +7,22 @@ class HomeController extends GetxController {
   static HomeController get to => Get.find();
 
   final ScrollController scrollController = ScrollController();
+  final PageController pageController = PageController(initialPage: 0);
   RxList colorList = [true, false, false, false, false].obs;
+  List photoList = ["assets/sky1.jpg", "assets/sky2.jpg", "assets/sky3.jpg", "assets/sky4.jpg", "assets/sky5.jpg"];
 
   RxString title = "홈".obs;
   RxBool showLogo = true.obs;
+
+  setColor(idx) {
+    for (var i = 0; i < colorList.length; i++) {
+      if (i == idx) {
+        colorList[i] = true;
+      } else {
+        colorList[i] = false;
+      }
+    }
+  }
 
   @override
   void onInit() {
