@@ -12,114 +12,145 @@ class Home extends GetView<HomeController> {
       showBottombar: true,
       showAppbar: false,
       body: SafeArea(
-        child: Container(
+        child: SizedBox(
           width: Get.width,
           height: Get.height,
           child: Obx(() {
-            return CustomScrollView(
-              slivers: <Widget>[
-                SliverAppBar(
-                  backgroundColor: Color.fromRGBO(218, 218, 218, 0.8),
-                  elevation: 0,
-                  pinned: true, // 축소시 상단에 appbar를 고정할것인가
-                  expandedHeight: 100, // 확대시 최대 높이
-                  flexibleSpace: FlexibleSpaceBar(
-                    titlePadding: EdgeInsets.zero,
-                    title: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Row(
-                          children: [
-                            TextButton(onPressed: () {}, child: Text("버튼")),
-                            TextButton(onPressed: () {}, child: Text("버튼")),
-                            TextButton(onPressed: () {}, child: Text("버튼")),
-                            TextButton(onPressed: () {}, child: Text("버튼")),
-                          ],
-                        ),
-                      ],
-                    ),
-                    background: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "TVING",
-                              style: TextStyle(fontSize: 20),
-                            ),
-                            Row(
-                              children: [IconButton(onPressed: () {}, icon: Icon(Icons.share)), Icon(Icons.account_circle_outlined)],
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SliverList(
-                  // 아이템을 빌드하기 위해서 delegate 항목을 구성함
-                  // SliverChildBuilderDelegate는 ListView.builder 처럼 리스트의 아이템을 생성해줌
-                  delegate: SliverChildListDelegate(
-                    [
-                      Text(controller.title.value),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
-                      Text("?"),
+            return Column(
+              children: [
+                controller.showLogo.value
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text("TVING"),
+                          Row(
+                            children: [
+                              Icon(Icons.screen_share_outlined),
+                              Icon(Icons.account_circle_outlined),
+                            ],
+                          )
+                        ],
+                      )
+                    : SizedBox(),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      TextButton(
+                        onPressed: () {},
+                        child: Text("홈"),
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text("실시간"),
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text("TV프로그램"),
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text("영화"),
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text("키즈"),
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text("티빙몰"),
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text("111"),
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text("222"),
+                      ),
                     ],
                   ),
                 ),
+                Expanded(
+                  child: CustomScrollView(
+                    controller: controller.scrollController,
+                    slivers: <Widget>[
+                      SliverList(
+                        delegate: SliverChildListDelegate(
+                          [
+                            SizedBox(
+                              height: Get.height * 0.4,
+                              child: Stack(
+                                children: [
+                                  Image.asset(
+                                    "assets/sky.jpg",
+                                    width: Get.width,
+                                    fit: BoxFit.cover,
+                                  ),
+                                  Align(
+                                    alignment: Alignment.bottomCenter,
+                                    child: Container(
+                                      height: Get.height * 0.2,
+                                      padding: EdgeInsets.all(15),
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Text(
+                                            "대충 영화설명 어쩌구저쩌구",
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          OutlinedButton(
+                                            onPressed: () {},
+                                            child: Text(
+                                              "자세히보기",
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                            style: OutlinedButton.styleFrom(
+                                              side: BorderSide(
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              for (var i = 0; i < controller.colorList.length; i++)
+                                                Container(
+                                                  margin: EdgeInsets.only(left: 2, right: 2),
+                                                  child: Icon(
+                                                    Icons.circle,
+                                                    size: 12,
+                                                    color: controller.colorList[i] ? Colors.white : Colors.grey,
+                                                  ),
+                                                )
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            for (var i = 1; i <= 7; i++)
+                              Container(
+                                color: Colors.grey[i * 100],
+                                child: SizedBox(
+                                  height: Get.height * 0.2,
+                                ),
+                              ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                )
               ],
             );
           }),
